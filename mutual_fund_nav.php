@@ -1,16 +1,43 @@
 <?php
 
+function formatCurrentDate()
+{
+    $date = date('m-d-Y');
+    $dateObj = DateTime::createFromFormat('m-d-Y', $date);
+    return $dateObj->format('d-M-Y');
+}
+
 $myMutualFundIds = [119544, 105804, 119661, 119242, 119076, 119077, 120166, 119773, 119772, 130503, 119059
     , 118473, 118472, 132756, 119723, 119802, 120502, 118803, 133386];
-$mutualFundArr = [
+
+    $mutualFundArr = [
     'Aditya Birla Sun Life Tax Relief 96' => 119544,
     'Aditya Birla Sun Life Small & Midcap Fund - GROWTH' => 105804,
     'Aditya Birla Sun Life Tax Plan' => 119661,
 ];
+
 $curl = curl_init();
-//Scheme Code;Scheme Name;Net Asset Value;Repurchase Price;Sale Price;Date
+
+$url = "http://portal.amfiindia.com/DownloadNAVHistoryReport_Po.aspx";
+
+if (!empty($_GET['from_date'])) {
+    $fromDate = $_GET['from_date'];
+    if (!empty($_GET['to_date'])) {
+        $toDate = $_GET['to_date'];    
+    } else {
+        $toDate = formatCurrentDate();
+    }    
+} else {
+    $toDate = $fromDate = formatCurrentDate();    
+}
+$url .= "?frmdt=" . $fromDate . "&todt=" . $toDate;
+
+if (!empty($_GET['mf'])) {
+    $url .= "&mf=" . $_GET['mf'];    
+}
+
 curl_setopt_array($curl, [
-    CURLOPT_URL => "http://portal.amfiindia.com/DownloadNAVHistoryReport_Po.aspx?frmdt=28-Dec-2017&todt=29-Dec-2017&tp=",
+    CURLOPT_URL => $url,
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => "",
     CURLOPT_MAXREDIRS => 10,
