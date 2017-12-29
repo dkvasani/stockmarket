@@ -1,11 +1,6 @@
 <?php
-
-function formatCurrentDate()
-{
-    $date = date('m-d-Y');
-    $dateObj = DateTime::createFromFormat('m-d-Y', $date);
-    return $dateObj->format('d-M-Y');
-}
+include './function.php';
+$title = 'Mutual Funds NAV';
 
 $myMutualFundIds = [119544, 105804, 119661, 119242, 119076, 119077, 120166, 119773, 119772, 130503, 119059
     , 118473, 118472, 132756, 119723, 119802, 120502, 118803, 133386];
@@ -65,21 +60,9 @@ if ($err) {
         }
     }
 }
+
+include './header.php';
 ?>
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-
-    <title>Mutual Funds NAV</title>
-  </head>
-<body>
-<div class="container-full">
 
 <div class="table-responsive">
 <div class="page-header">
