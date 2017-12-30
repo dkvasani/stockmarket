@@ -5,3 +5,6 @@ body {
     padding: 3rem 1.5rem;
     text-align: center;
   }
+  tr:nth-child(even) {background: #e4dfdf;}
+  tr:nth-child(odd) {background:#fbfbfb}
+  h1 {padding-bottom: 12px;}

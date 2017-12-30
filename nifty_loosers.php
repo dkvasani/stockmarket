@@ -36,9 +36,9 @@ include './header.php';
 ?>
 <div class="table-responsive">
 <div class="page-header">
-    <h1 align="center">Nifty Loosers</h1>
+    <h1 align="center">NIFTY LOOSERS</h1>
 </div>
-<table class="table">
+<table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
       <!-- <th scope="col">#</th> -->
