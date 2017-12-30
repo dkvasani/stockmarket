@@ -5,59 +5,33 @@ $title = 'Mutual Funds NAV';
 $myMutualFundIds = [119544, 105804, 119661, 119242, 119076, 119077, 120166, 119773, 119772, 130503, 119059
     , 118473, 118472, 132756, 119723, 119802, 120502, 118803, 133386];
 
-    $mutualFundArr = [
-    'Aditya Birla Sun Life Tax Relief 96' => 119544,
-    'Aditya Birla Sun Life Small & Midcap Fund - GROWTH' => 105804,
-    'Aditya Birla Sun Life Tax Plan' => 119661,
-];
-
-$curl = curl_init();
-
 $url = "http://portal.amfiindia.com/DownloadNAVHistoryReport_Po.aspx";
 
 if (!empty($_GET['from_date'])) {
     $fromDate = $_GET['from_date'];
     if (!empty($_GET['to_date'])) {
-        $toDate = $_GET['to_date'];    
+        $toDate = $_GET['to_date'];
     } else {
         $toDate = formatCurrentDate();
-    }    
+    }
 } else {
-    $toDate = $fromDate = formatCurrentDate();    
+    $toDate = $fromDate = formatCurrentDate();
 }
 $url .= "?frmdt=" . $fromDate . "&todt=" . $toDate;
 
 if (!empty($_GET['mf'])) {
-    $url .= "&mf=" . $_GET['mf'];    
+    $url .= "&mf=" . $_GET['mf'];
 }
 
-curl_setopt_array($curl, [
-    CURLOPT_URL => $url,
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => "",
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 30,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => "GET",
-    CURLOPT_HTTPHEADER => [],
-]);
+$response = curlCall($url, '');
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-    echo "cURL Error #:" . $err;
-} else {
-    $lines = explode(PHP_EOL, $response);
-    $array = array();
-    foreach ($lines as $line) {
-        $currentLine = str_getcsv($line);
-        $singleRow = explode(';', $currentLine[0]);
-        if (in_array($singleRow[0], $myMutualFundIds)) {
-            $array[] = $singleRow;
-        }
+$lines = explode(PHP_EOL, $response);
+$array = array();
+foreach ($lines as $line) {
+    $currentLine = str_getcsv($line);
+    $singleRow = explode(';', $currentLine[0]);
+    if (in_array($singleRow[0], $myMutualFundIds)) {
+        $array[] = $singleRow;
     }
 }
 
@@ -68,12 +42,13 @@ include './header.php';
 <div class="page-header">
     <h1 align="center">My Mutual Fund and ITs NAV Value</h1>
 </div>
+
 <div class ="row form-group">
-<div class="col-4"></div>
+<div class="col-3"></div>
 <div class="col-2">
       Select Mutual Fund
 </div>
-<div class="col-6">
+<div class="col-5">
 <select name="fund_name" id="fund_name" accesskey="M">
 			<option value="0">-- Select Mutual Fund --</option>
 			<option value="all">All</option>
@@ -144,10 +119,9 @@ include './header.php';
 		</select>
 </div>
 </div>
-<table class="table">
+<table class="table table-bordered">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Scheme Code</th>
       <th scope="col">Scheme Name</th>
       <th scope="col">Net Asset Value</th>
@@ -160,7 +134,6 @@ include './header.php';
     <?php
 foreach ($array as $key => $row) {
     ?><tr>
-    <th scope="row"><?php echo $key + 1; ?></th>
     <?php
 foreach ($row as $column) {?>
 <td> <?php echo $column ?> </td>
@@ -171,4 +144,4 @@ foreach ($row as $column) {?>
   </tbody>
 </table>
 
-<?php include './footer.php'; ?>
+<?php include './footer.php';?>
