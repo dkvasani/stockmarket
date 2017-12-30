@@ -3,13 +3,13 @@
 require './common/config.php';
 
 $title = 'Nifty Loosers';
-$response = curlCall(NSE_LOOSERS, NSE_REFERER);
+$response = curlCall(NSE_GAINERS, NSE_REFERER);
 $loserDataArr = json_decode($response, true);
 include './header.php';
 ?>
 <div class="table-responsive">
 <div class="page-header">
-    <h1 align="center">NIFTY LOOSERS - DATE : <?php echo $loserDataArr['time']; ?></h1>
+    <h1 align="center">NIFTY GAINERS - DATE: <?php echo $loserDataArr['time']; ?></h1>
 </div>
 <table class="table table-bordered">
   <thead class="thead-dark">
