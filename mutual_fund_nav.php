@@ -1,5 +1,5 @@
 <?php
-include './function.php';
+require './common/config.php';
 $title = 'Mutual Funds NAV';
 
 $myMutualFundIds = [119544, 105804, 119661, 119242, 119076, 119077, 120166, 119773, 119772, 130503, 119059
@@ -171,7 +171,4 @@ foreach ($row as $column) {?>
   </tbody>
 </table>
 
-</div>
-</div>
-</body>
-</html>
+<?php include './footer.php'; ?>

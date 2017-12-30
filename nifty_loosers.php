@@ -1,5 +1,6 @@
 
 <?php
+require './common/config.php';
 
 $title = 'Nifty Loosers';
 $curl = curl_init();
@@ -32,7 +33,6 @@ if ($err) {
 
 }
 include './header.php';
-
 ?>
 <div class="table-responsive">
 <div class="page-header">
@@ -78,8 +78,4 @@ foreach ($loserDataArr['data'] as $key => $row) {
 ?>
   </tbody>
 </table>
-
-</div>
-</div>
-</body>
-</html>
+<?php include './footer.php'; ?>
