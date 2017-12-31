@@ -33,6 +33,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="niftydropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nifty</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="/nifty_stock_watch.php">Nifty Stock Watch</a>
               <a class="dropdown-item" href="/nifty_loosers.php">Nifty Loosers</a>
               <a class="dropdown-item" href="/nifty_gainers.php">Nifty Gainers</a>
               <a class="dropdown-item" href="/nifty_52new_low.php">52NewLow</a>
