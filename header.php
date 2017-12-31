@@ -9,6 +9,8 @@
     <link rel="icon" href="../../favicon.ico">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="./css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="./css/style.css">
 
     <title><?php echo $title; ?></title>
