@@ -7,8 +7,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#dkvasani-datatable').DataTable({
-        iDisplayLength: 100,
-        
+        iDisplayLength: 1000
     });
 } );
 </script>

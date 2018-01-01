@@ -2,9 +2,29 @@
 <?php
 require './common/config.php';
 
-$title = 'Nifty Loosers';
+$title = 'Nifty Stocks';
 $response = curlCall(NSE_STOCK_WATCH, NSE_REFERER);
 $loserDataArr = json_decode($response, true);
+
+$responseMidcap = curlCall(NSE_MIDCAP_STOCK_WATCH, NSE_REFERER);
+$responseMidcap = json_decode($responseMidcap, true);
+
+$dataArray = array_merge($loserDataArr['data'], $responseMidcap['data']);
+
+$responseNext50 = curlCall(NSE_NEXT_FIFTY, NSE_REFERER);
+$responseNext50 = json_decode($responseNext50, true);
+
+$dataArray = array_merge($dataArray, $responseNext50['data']);
+
+$responseCnxAutoStock = curlCall(NSE_CNX_AUTO_STOCK, NSE_REFERER);
+$responseCnxAutoStock = json_decode($responseCnxAutoStock, true);
+
+$dataArray = array_merge($dataArray, $responseCnxAutoStock['data']);
+
+$responseCnxAutoStock = curlCall(NSE_CNX_AUTO_STOCK, NSE_REFERER);
+$responseCnxAutoStock = json_decode($responseCnxAutoStock, true);
+
+$dataArray = array_merge($dataArray, $responseCnxAutoStock['data']);
 include './header.php';
 ?>
 <div class="table-responsive">
@@ -33,7 +53,7 @@ include './header.php';
   </thead>
   <tbody>
     <?php
-foreach ($loserDataArr['data'] as $key => $row) {
+foreach ($dataArray as $key => $row) {
     ?><tr>
   
     <td><?php echo $row['symbol'] ?> </td>
