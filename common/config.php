@@ -15,4 +15,5 @@ $niftyDataArr = [
     
 ];
 
+include 'db_connection.php';
 include '././function.php';
