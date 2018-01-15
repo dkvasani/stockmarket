@@ -11,6 +11,8 @@ define('NSE_NEXT_FIFTY', 'https://www.nseindia.com/live_market/dynaContent/live_
 define('NSE_CNX_AUTO_STOCK', 'https://www.nseindia.com/live_market/dynaContent/live_watch/stock_watch/cnxAutoStockWatch.json');
 define('NSE_REFERER', 'https://www.nseindia.com');
 
+define('NSE_STOCK_DATA', "https://www.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp");
+
 $niftyDataArr = [
     
 ];
